@@ -1,0 +1,447 @@
+
+finalproject.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000008  00800200  0000021e  00000292  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000021e  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  0000029a  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000002cc  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000050  00000000  00000000  0000030c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00001041  00000000  00000000  0000035c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000d0d  00000000  00000000  0000139d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000597  00000000  00000000  000020aa  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000068  00000000  00000000  00002644  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000601  00000000  00000000  000026ac  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000392  00000000  00000000  00002cad  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000090  00000000  00000000  0000303f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	71 c0       	rjmp	.+226    	; 0xe4 <__ctors_end>
+   2:	00 00       	nop
+   4:	86 c0       	rjmp	.+268    	; 0x112 <__bad_interrupt>
+   6:	00 00       	nop
+   8:	84 c0       	rjmp	.+264    	; 0x112 <__bad_interrupt>
+   a:	00 00       	nop
+   c:	82 c0       	rjmp	.+260    	; 0x112 <__bad_interrupt>
+   e:	00 00       	nop
+  10:	80 c0       	rjmp	.+256    	; 0x112 <__bad_interrupt>
+  12:	00 00       	nop
+  14:	7e c0       	rjmp	.+252    	; 0x112 <__bad_interrupt>
+  16:	00 00       	nop
+  18:	7c c0       	rjmp	.+248    	; 0x112 <__bad_interrupt>
+  1a:	00 00       	nop
+  1c:	7a c0       	rjmp	.+244    	; 0x112 <__bad_interrupt>
+  1e:	00 00       	nop
+  20:	78 c0       	rjmp	.+240    	; 0x112 <__bad_interrupt>
+  22:	00 00       	nop
+  24:	76 c0       	rjmp	.+236    	; 0x112 <__bad_interrupt>
+  26:	00 00       	nop
+  28:	74 c0       	rjmp	.+232    	; 0x112 <__bad_interrupt>
+  2a:	00 00       	nop
+  2c:	72 c0       	rjmp	.+228    	; 0x112 <__bad_interrupt>
+  2e:	00 00       	nop
+  30:	70 c0       	rjmp	.+224    	; 0x112 <__bad_interrupt>
+  32:	00 00       	nop
+  34:	6e c0       	rjmp	.+220    	; 0x112 <__bad_interrupt>
+  36:	00 00       	nop
+  38:	6c c0       	rjmp	.+216    	; 0x112 <__bad_interrupt>
+  3a:	00 00       	nop
+  3c:	6a c0       	rjmp	.+212    	; 0x112 <__bad_interrupt>
+  3e:	00 00       	nop
+  40:	68 c0       	rjmp	.+208    	; 0x112 <__bad_interrupt>
+  42:	00 00       	nop
+  44:	66 c0       	rjmp	.+204    	; 0x112 <__bad_interrupt>
+  46:	00 00       	nop
+  48:	64 c0       	rjmp	.+200    	; 0x112 <__bad_interrupt>
+  4a:	00 00       	nop
+  4c:	62 c0       	rjmp	.+196    	; 0x112 <__bad_interrupt>
+  4e:	00 00       	nop
+  50:	60 c0       	rjmp	.+192    	; 0x112 <__bad_interrupt>
+  52:	00 00       	nop
+  54:	5e c0       	rjmp	.+188    	; 0x112 <__bad_interrupt>
+  56:	00 00       	nop
+  58:	5c c0       	rjmp	.+184    	; 0x112 <__bad_interrupt>
+  5a:	00 00       	nop
+  5c:	5a c0       	rjmp	.+180    	; 0x112 <__bad_interrupt>
+  5e:	00 00       	nop
+  60:	58 c0       	rjmp	.+176    	; 0x112 <__bad_interrupt>
+  62:	00 00       	nop
+  64:	56 c0       	rjmp	.+172    	; 0x112 <__bad_interrupt>
+  66:	00 00       	nop
+  68:	54 c0       	rjmp	.+168    	; 0x112 <__bad_interrupt>
+  6a:	00 00       	nop
+  6c:	52 c0       	rjmp	.+164    	; 0x112 <__bad_interrupt>
+  6e:	00 00       	nop
+  70:	50 c0       	rjmp	.+160    	; 0x112 <__bad_interrupt>
+  72:	00 00       	nop
+  74:	4e c0       	rjmp	.+156    	; 0x112 <__bad_interrupt>
+  76:	00 00       	nop
+  78:	4c c0       	rjmp	.+152    	; 0x112 <__bad_interrupt>
+  7a:	00 00       	nop
+  7c:	4a c0       	rjmp	.+148    	; 0x112 <__bad_interrupt>
+  7e:	00 00       	nop
+  80:	48 c0       	rjmp	.+144    	; 0x112 <__bad_interrupt>
+  82:	00 00       	nop
+  84:	46 c0       	rjmp	.+140    	; 0x112 <__bad_interrupt>
+  86:	00 00       	nop
+  88:	44 c0       	rjmp	.+136    	; 0x112 <__bad_interrupt>
+  8a:	00 00       	nop
+  8c:	42 c0       	rjmp	.+132    	; 0x112 <__bad_interrupt>
+  8e:	00 00       	nop
+  90:	40 c0       	rjmp	.+128    	; 0x112 <__bad_interrupt>
+  92:	00 00       	nop
+  94:	3e c0       	rjmp	.+124    	; 0x112 <__bad_interrupt>
+  96:	00 00       	nop
+  98:	3c c0       	rjmp	.+120    	; 0x112 <__bad_interrupt>
+  9a:	00 00       	nop
+  9c:	3a c0       	rjmp	.+116    	; 0x112 <__bad_interrupt>
+  9e:	00 00       	nop
+  a0:	38 c0       	rjmp	.+112    	; 0x112 <__bad_interrupt>
+  a2:	00 00       	nop
+  a4:	36 c0       	rjmp	.+108    	; 0x112 <__bad_interrupt>
+  a6:	00 00       	nop
+  a8:	34 c0       	rjmp	.+104    	; 0x112 <__bad_interrupt>
+  aa:	00 00       	nop
+  ac:	32 c0       	rjmp	.+100    	; 0x112 <__bad_interrupt>
+  ae:	00 00       	nop
+  b0:	30 c0       	rjmp	.+96     	; 0x112 <__bad_interrupt>
+  b2:	00 00       	nop
+  b4:	2e c0       	rjmp	.+92     	; 0x112 <__bad_interrupt>
+  b6:	00 00       	nop
+  b8:	2c c0       	rjmp	.+88     	; 0x112 <__bad_interrupt>
+  ba:	00 00       	nop
+  bc:	2a c0       	rjmp	.+84     	; 0x112 <__bad_interrupt>
+  be:	00 00       	nop
+  c0:	28 c0       	rjmp	.+80     	; 0x112 <__bad_interrupt>
+  c2:	00 00       	nop
+  c4:	26 c0       	rjmp	.+76     	; 0x112 <__bad_interrupt>
+  c6:	00 00       	nop
+  c8:	24 c0       	rjmp	.+72     	; 0x112 <__bad_interrupt>
+  ca:	00 00       	nop
+  cc:	22 c0       	rjmp	.+68     	; 0x112 <__bad_interrupt>
+  ce:	00 00       	nop
+  d0:	20 c0       	rjmp	.+64     	; 0x112 <__bad_interrupt>
+  d2:	00 00       	nop
+  d4:	1e c0       	rjmp	.+60     	; 0x112 <__bad_interrupt>
+  d6:	00 00       	nop
+  d8:	1c c0       	rjmp	.+56     	; 0x112 <__bad_interrupt>
+  da:	00 00       	nop
+  dc:	1a c0       	rjmp	.+52     	; 0x112 <__bad_interrupt>
+  de:	00 00       	nop
+  e0:	18 c0       	rjmp	.+48     	; 0x112 <__bad_interrupt>
+	...
+
+000000e4 <__ctors_end>:
+  e4:	11 24       	eor	r1, r1
+  e6:	1f be       	out	0x3f, r1	; 63
+  e8:	cf ef       	ldi	r28, 0xFF	; 255
+  ea:	d1 e2       	ldi	r29, 0x21	; 33
+  ec:	de bf       	out	0x3e, r29	; 62
+  ee:	cd bf       	out	0x3d, r28	; 61
+  f0:	00 e0       	ldi	r16, 0x00	; 0
+  f2:	0c bf       	out	0x3c, r16	; 60
+
+000000f4 <__do_copy_data>:
+  f4:	12 e0       	ldi	r17, 0x02	; 2
+  f6:	a0 e0       	ldi	r26, 0x00	; 0
+  f8:	b2 e0       	ldi	r27, 0x02	; 2
+  fa:	ee e1       	ldi	r30, 0x1E	; 30
+  fc:	f2 e0       	ldi	r31, 0x02	; 2
+  fe:	00 e0       	ldi	r16, 0x00	; 0
+ 100:	0b bf       	out	0x3b, r16	; 59
+ 102:	02 c0       	rjmp	.+4      	; 0x108 <__do_copy_data+0x14>
+ 104:	07 90       	elpm	r0, Z+
+ 106:	0d 92       	st	X+, r0
+ 108:	a8 30       	cpi	r26, 0x08	; 8
+ 10a:	b1 07       	cpc	r27, r17
+ 10c:	d9 f7       	brne	.-10     	; 0x104 <__do_copy_data+0x10>
+ 10e:	0c d0       	rcall	.+24     	; 0x128 <main>
+ 110:	84 c0       	rjmp	.+264    	; 0x21a <_exit>
+
+00000112 <__bad_interrupt>:
+ 112:	76 cf       	rjmp	.-276    	; 0x0 <__vectors>
+
+00000114 <io_init>:
+
+void io_init(void)
+
+{
+
+	DDRK = 0xFF; //set PORTK as output
+ 114:	8f ef       	ldi	r24, 0xFF	; 255
+ 116:	80 93 07 01 	sts	0x0107, r24	; 0x800107 <__TEXT_REGION_LENGTH__+0x7c0107>
+	PORTK = 0x00; //turn off LED at initialization
+ 11a:	10 92 08 01 	sts	0x0108, r1	; 0x800108 <__TEXT_REGION_LENGTH__+0x7c0108>
+	DDRA = 0x00; //set PORTA as input
+ 11e:	11 b8       	out	0x01, r1	; 1
+	PORTA = 0xFF; //turn on pull-up resistors
+ 120:	82 b9       	out	0x02, r24	; 2
+	DDRC = 0x00;
+ 122:	17 b8       	out	0x07, r1	; 7
+	PORTC = 0xFF;
+ 124:	88 b9       	out	0x08, r24	; 8
+ 126:	08 95       	ret
+
+00000128 <main>:
+#include <util/delay.h>
+#include "stepper_motor.h"
+
+int main(void)
+{
+	io_init();
+ 128:	f5 df       	rcall	.-22     	; 0x114 <io_init>
+	
+	uint8_t n=1;
+
+	
+	while ((PINC & 0x01))
+ 12a:	04 c0       	rjmp	.+8      	; 0x134 <main+0xc>
+	{
+		Stepper_Position('W',n);
+ 12c:	61 e0       	ldi	r22, 0x01	; 1
+ 12e:	70 e0       	ldi	r23, 0x00	; 0
+ 130:	87 e5       	ldi	r24, 0x57	; 87
+ 132:	20 d0       	rcall	.+64     	; 0x174 <Stepper_Position>
+	io_init();
+	
+	uint8_t n=1;
+
+	
+	while ((PINC & 0x01))
+ 134:	30 99       	sbic	0x06, 0	; 6
+ 136:	fa cf       	rjmp	.-12     	; 0x12c <main+0x4>
+	
+	
+
+		
+
+		switch (PushButton)
+ 138:	80 b1       	in	r24, 0x00	; 0
+ 13a:	8f 70       	andi	r24, 0x0F	; 15
+ 13c:	82 30       	cpi	r24, 0x02	; 2
+ 13e:	61 f0       	breq	.+24     	; 0x158 <main+0x30>
+ 140:	88 30       	cpi	r24, 0x08	; 8
+ 142:	99 f0       	breq	.+38     	; 0x16a <main+0x42>
+ 144:	81 30       	cpi	r24, 0x01	; 1
+ 146:	99 f4       	brne	.+38     	; 0x16e <main+0x46>
+ 148:	04 c0       	rjmp	.+8      	; 0x152 <main+0x2a>
+		{
+			case Wave_Step:
+			{
+				while (PINA & Wave_Step)
+				{
+				Stepper_Position('W',n); //Wave rotation
+ 14a:	61 e0       	ldi	r22, 0x01	; 1
+ 14c:	70 e0       	ldi	r23, 0x00	; 0
+ 14e:	87 e5       	ldi	r24, 0x57	; 87
+ 150:	11 d0       	rcall	.+34     	; 0x174 <Stepper_Position>
+
+		switch (PushButton)
+		{
+			case Wave_Step:
+			{
+				while (PINA & Wave_Step)
+ 152:	00 99       	sbic	0x00, 0	; 0
+ 154:	fa cf       	rjmp	.-12     	; 0x14a <main+0x22>
+ 156:	0b c0       	rjmp	.+22     	; 0x16e <main+0x46>
+
+				break;
+			}
+			case Full_Step:
+			{
+				Stepper_Position('F',n); //Full rotation
+ 158:	61 e0       	ldi	r22, 0x01	; 1
+ 15a:	70 e0       	ldi	r23, 0x00	; 0
+ 15c:	86 e4       	ldi	r24, 0x46	; 70
+ 15e:	0a d0       	rcall	.+20     	; 0x174 <Stepper_Position>
+			
+			case Position:
+			{
+				while ((PINC & 0x01))
+				{
+					Stepper_Position('W',n);
+ 160:	06 c0       	rjmp	.+12     	; 0x16e <main+0x46>
+ 162:	61 e0       	ldi	r22, 0x01	; 1
+ 164:	70 e0       	ldi	r23, 0x00	; 0
+ 166:	87 e5       	ldi	r24, 0x57	; 87
+ 168:	05 d0       	rcall	.+10     	; 0x174 <Stepper_Position>
+			}
+
+			
+			case Position:
+			{
+				while ((PINC & 0x01))
+ 16a:	30 99       	sbic	0x06, 0	; 6
+ 16c:	fa cf       	rjmp	.-12     	; 0x162 <main+0x3a>
+					Stepper_Position('W',n);
+				}
+
+			}
+		}
+		PORTK = 0x00; //clear output when done
+ 16e:	10 92 08 01 	sts	0x0108, r1	; 0x800108 <__TEXT_REGION_LENGTH__+0x7c0108>
+		}
+ 172:	e2 cf       	rjmp	.-60     	; 0x138 <main+0x10>
+
+00000174 <Stepper_Position>:
+}
+void Stepper_Position(char mode, uint16_t degrees )
+{
+	uint16_t steps;
+	
+	switch (mode)
+ 174:	86 34       	cpi	r24, 0x46	; 70
+ 176:	51 f1       	breq	.+84     	; 0x1cc <Stepper_Position+0x58>
+ 178:	87 35       	cpi	r24, 0x57	; 87
+ 17a:	09 f0       	breq	.+2      	; 0x17e <Stepper_Position+0xa>
+ 17c:	4d c0       	rjmp	.+154    	; 0x218 <Stepper_Position+0xa4>
+	{
+		case 'W':
+		{
+			
+			steps = degrees*6/4; //calculate number of steps for needed degrees
+ 17e:	ab 01       	movw	r20, r22
+ 180:	44 0f       	add	r20, r20
+ 182:	55 1f       	adc	r21, r21
+ 184:	46 0f       	add	r20, r22
+ 186:	57 1f       	adc	r21, r23
+ 188:	44 0f       	add	r20, r20
+ 18a:	55 1f       	adc	r21, r21
+ 18c:	56 95       	lsr	r21
+ 18e:	47 95       	ror	r20
+ 190:	56 95       	lsr	r21
+ 192:	47 95       	ror	r20
+			
+			for(uint16_t i=0;i<steps;i++)
+ 194:	60 e0       	ldi	r22, 0x00	; 0
+ 196:	70 e0       	ldi	r23, 0x00	; 0
+ 198:	15 c0       	rjmp	.+42     	; 0x1c4 <Stepper_Position+0x50>
+			{
+				for(uint16_t j=0; j<4; j++)
+				{
+					PORTK = Wave[j]; //runs step pattern
+ 19a:	fc 01       	movw	r30, r24
+ 19c:	ec 5f       	subi	r30, 0xFC	; 252
+ 19e:	fd 4f       	sbci	r31, 0xFD	; 253
+ 1a0:	20 81       	ld	r18, Z
+ 1a2:	20 93 08 01 	sts	0x0108, r18	; 0x800108 <__TEXT_REGION_LENGTH__+0x7c0108>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1a6:	ef eb       	ldi	r30, 0xBF	; 191
+ 1a8:	fd e5       	ldi	r31, 0x5D	; 93
+ 1aa:	31 97       	sbiw	r30, 0x01	; 1
+ 1ac:	f1 f7       	brne	.-4      	; 0x1aa <Stepper_Position+0x36>
+ 1ae:	00 c0       	rjmp	.+0      	; 0x1b0 <Stepper_Position+0x3c>
+ 1b0:	00 00       	nop
+			
+			steps = degrees*6/4; //calculate number of steps for needed degrees
+			
+			for(uint16_t i=0;i<steps;i++)
+			{
+				for(uint16_t j=0; j<4; j++)
+ 1b2:	01 96       	adiw	r24, 0x01	; 1
+ 1b4:	02 c0       	rjmp	.+4      	; 0x1ba <Stepper_Position+0x46>
+ 1b6:	80 e0       	ldi	r24, 0x00	; 0
+ 1b8:	90 e0       	ldi	r25, 0x00	; 0
+ 1ba:	84 30       	cpi	r24, 0x04	; 4
+ 1bc:	91 05       	cpc	r25, r1
+ 1be:	68 f3       	brcs	.-38     	; 0x19a <Stepper_Position+0x26>
+		case 'W':
+		{
+			
+			steps = degrees*6/4; //calculate number of steps for needed degrees
+			
+			for(uint16_t i=0;i<steps;i++)
+ 1c0:	6f 5f       	subi	r22, 0xFF	; 255
+ 1c2:	7f 4f       	sbci	r23, 0xFF	; 255
+ 1c4:	64 17       	cp	r22, r20
+ 1c6:	75 07       	cpc	r23, r21
+ 1c8:	b0 f3       	brcs	.-20     	; 0x1b6 <Stepper_Position+0x42>
+ 1ca:	08 95       	ret
+		}
+		
+		case 'F':
+		{
+			
+			steps = degrees*6/4; //calculate number of steps for needed degrees
+ 1cc:	ab 01       	movw	r20, r22
+ 1ce:	44 0f       	add	r20, r20
+ 1d0:	55 1f       	adc	r21, r21
+ 1d2:	46 0f       	add	r20, r22
+ 1d4:	57 1f       	adc	r21, r23
+ 1d6:	44 0f       	add	r20, r20
+ 1d8:	55 1f       	adc	r21, r21
+ 1da:	56 95       	lsr	r21
+ 1dc:	47 95       	ror	r20
+ 1de:	56 95       	lsr	r21
+ 1e0:	47 95       	ror	r20
+			
+			for(uint16_t i=0;i<steps;i++)
+ 1e2:	60 e0       	ldi	r22, 0x00	; 0
+ 1e4:	70 e0       	ldi	r23, 0x00	; 0
+ 1e6:	15 c0       	rjmp	.+42     	; 0x212 <Stepper_Position+0x9e>
+			{
+				for(uint16_t j=0; j<4; j++)
+				{
+					PORTK = Iwave[j]; //runs step pattern
+ 1e8:	fc 01       	movw	r30, r24
+ 1ea:	e0 50       	subi	r30, 0x00	; 0
+ 1ec:	fe 4f       	sbci	r31, 0xFE	; 254
+ 1ee:	20 81       	ld	r18, Z
+ 1f0:	20 93 08 01 	sts	0x0108, r18	; 0x800108 <__TEXT_REGION_LENGTH__+0x7c0108>
+ 1f4:	ef eb       	ldi	r30, 0xBF	; 191
+ 1f6:	fd e5       	ldi	r31, 0x5D	; 93
+ 1f8:	31 97       	sbiw	r30, 0x01	; 1
+ 1fa:	f1 f7       	brne	.-4      	; 0x1f8 <Stepper_Position+0x84>
+ 1fc:	00 c0       	rjmp	.+0      	; 0x1fe <Stepper_Position+0x8a>
+ 1fe:	00 00       	nop
+			
+			steps = degrees*6/4; //calculate number of steps for needed degrees
+			
+			for(uint16_t i=0;i<steps;i++)
+			{
+				for(uint16_t j=0; j<4; j++)
+ 200:	01 96       	adiw	r24, 0x01	; 1
+ 202:	02 c0       	rjmp	.+4      	; 0x208 <Stepper_Position+0x94>
+ 204:	80 e0       	ldi	r24, 0x00	; 0
+ 206:	90 e0       	ldi	r25, 0x00	; 0
+ 208:	84 30       	cpi	r24, 0x04	; 4
+ 20a:	91 05       	cpc	r25, r1
+ 20c:	68 f3       	brcs	.-38     	; 0x1e8 <Stepper_Position+0x74>
+		case 'F':
+		{
+			
+			steps = degrees*6/4; //calculate number of steps for needed degrees
+			
+			for(uint16_t i=0;i<steps;i++)
+ 20e:	6f 5f       	subi	r22, 0xFF	; 255
+ 210:	7f 4f       	sbci	r23, 0xFF	; 255
+ 212:	64 17       	cp	r22, r20
+ 214:	75 07       	cpc	r23, r21
+ 216:	b0 f3       	brcs	.-20     	; 0x204 <Stepper_Position+0x90>
+ 218:	08 95       	ret
+
+0000021a <_exit>:
+ 21a:	f8 94       	cli
+
+0000021c <__stop_program>:
+ 21c:	ff cf       	rjmp	.-2      	; 0x21c <__stop_program>

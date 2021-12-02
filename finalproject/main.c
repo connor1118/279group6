@@ -5,6 +5,8 @@
  * Author : megjd
  */ 
 
+//test
+
 #define F_CPU 16000000UL
 #define PushButton (PINA & ( (1<<PA0) | (1<<PA1) | (1<<PA2) | (1<<PA3))) // push buttons 1-4
 #define degree 90 //set amount of degrees you want motor to turn
