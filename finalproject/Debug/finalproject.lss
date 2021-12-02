@@ -3,29 +3,29 @@ finalproject.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000008  00800200  0000021e  00000292  2**0
+  0 .data         00000008  00800200  0000022e  000002a2  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         0000021e  00000000  00000000  00000074  2**1
+  1 .text         0000022e  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  0000029a  2**0
+  2 .comment      00000030  00000000  00000000  000002aa  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000002cc  2**2
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000002dc  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000050  00000000  00000000  0000030c  2**0
+  4 .debug_aranges 00000050  00000000  00000000  0000031c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00001041  00000000  00000000  0000035c  2**0
+  5 .debug_info   00001089  00000000  00000000  0000036c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000d0d  00000000  00000000  0000139d  2**0
+  6 .debug_abbrev 00000d1c  00000000  00000000  000013f5  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000597  00000000  00000000  000020aa  2**0
+  7 .debug_line   0000056a  00000000  00000000  00002111  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000068  00000000  00000000  00002644  2**2
+  8 .debug_frame  00000068  00000000  00000000  0000267c  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    00000601  00000000  00000000  000026ac  2**0
+  9 .debug_str    000005ea  00000000  00000000  000026e4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00000392  00000000  00000000  00002cad  2**0
+ 10 .debug_loc    00000392  00000000  00000000  00002cce  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000090  00000000  00000000  0000303f  2**0
+ 11 .debug_ranges 00000090  00000000  00000000  00003060  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -160,7 +160,7 @@ Disassembly of section .text:
   f4:	12 e0       	ldi	r17, 0x02	; 2
   f6:	a0 e0       	ldi	r26, 0x00	; 0
   f8:	b2 e0       	ldi	r27, 0x02	; 2
-  fa:	ee e1       	ldi	r30, 0x1E	; 30
+  fa:	ee e2       	ldi	r30, 0x2E	; 46
   fc:	f2 e0       	ldi	r31, 0x02	; 2
   fe:	00 e0       	ldi	r16, 0x00	; 0
  100:	0b bf       	out	0x3b, r16	; 59
@@ -171,7 +171,7 @@ Disassembly of section .text:
  10a:	b1 07       	cpc	r27, r17
  10c:	d9 f7       	brne	.-10     	; 0x104 <__do_copy_data+0x10>
  10e:	0c d0       	rcall	.+24     	; 0x128 <main>
- 110:	84 c0       	rjmp	.+264    	; 0x21a <_exit>
+ 110:	8c c0       	rjmp	.+280    	; 0x22a <_exit>
 
 00000112 <__bad_interrupt>:
  112:	76 cf       	rjmp	.-276    	; 0x0 <__vectors>
@@ -205,8 +205,9 @@ int main(void)
 {
 	io_init();
  128:	f5 df       	rcall	.-22     	; 0x114 <io_init>
-	
 	uint8_t n=1;
+	
+	uint8_t h=2000;
 
 	
 	while ((PINC & 0x01))
@@ -216,232 +217,250 @@ int main(void)
  12c:	61 e0       	ldi	r22, 0x01	; 1
  12e:	70 e0       	ldi	r23, 0x00	; 0
  130:	87 e5       	ldi	r24, 0x57	; 87
- 132:	20 d0       	rcall	.+64     	; 0x174 <Stepper_Position>
-	io_init();
-	
+ 132:	28 d0       	rcall	.+80     	; 0x184 <Stepper_Position>
 	uint8_t n=1;
+	
+	uint8_t h=2000;
 
 	
 	while ((PINC & 0x01))
  134:	30 99       	sbic	0x06, 0	; 6
  136:	fa cf       	rjmp	.-12     	; 0x12c <main+0x4>
+	{
+		Stepper_Position('W',n);
+	}
+	Stepper_Position('F',h);
+ 138:	60 ed       	ldi	r22, 0xD0	; 208
+ 13a:	70 e0       	ldi	r23, 0x00	; 0
+ 13c:	86 e4       	ldi	r24, 0x46	; 70
+ 13e:	22 d0       	rcall	.+68     	; 0x184 <Stepper_Position>
 	
 	
 
 		
 
 		switch (PushButton)
- 138:	80 b1       	in	r24, 0x00	; 0
- 13a:	8f 70       	andi	r24, 0x0F	; 15
- 13c:	82 30       	cpi	r24, 0x02	; 2
- 13e:	61 f0       	breq	.+24     	; 0x158 <main+0x30>
- 140:	88 30       	cpi	r24, 0x08	; 8
- 142:	99 f0       	breq	.+38     	; 0x16a <main+0x42>
- 144:	81 30       	cpi	r24, 0x01	; 1
- 146:	99 f4       	brne	.+38     	; 0x16e <main+0x46>
- 148:	04 c0       	rjmp	.+8      	; 0x152 <main+0x2a>
+ 140:	80 b1       	in	r24, 0x00	; 0
+ 142:	8f 70       	andi	r24, 0x0F	; 15
+ 144:	82 30       	cpi	r24, 0x02	; 2
+ 146:	61 f0       	breq	.+24     	; 0x160 <main+0x38>
+ 148:	88 30       	cpi	r24, 0x08	; 8
+ 14a:	99 f0       	breq	.+38     	; 0x172 <main+0x4a>
+ 14c:	81 30       	cpi	r24, 0x01	; 1
+ 14e:	b9 f4       	brne	.+46     	; 0x17e <main+0x56>
+ 150:	04 c0       	rjmp	.+8      	; 0x15a <main+0x32>
 		{
 			case Wave_Step:
 			{
 				while (PINA & Wave_Step)
 				{
 				Stepper_Position('W',n); //Wave rotation
- 14a:	61 e0       	ldi	r22, 0x01	; 1
- 14c:	70 e0       	ldi	r23, 0x00	; 0
- 14e:	87 e5       	ldi	r24, 0x57	; 87
- 150:	11 d0       	rcall	.+34     	; 0x174 <Stepper_Position>
+ 152:	61 e0       	ldi	r22, 0x01	; 1
+ 154:	70 e0       	ldi	r23, 0x00	; 0
+ 156:	87 e5       	ldi	r24, 0x57	; 87
+ 158:	15 d0       	rcall	.+42     	; 0x184 <Stepper_Position>
 
 		switch (PushButton)
 		{
 			case Wave_Step:
 			{
 				while (PINA & Wave_Step)
- 152:	00 99       	sbic	0x00, 0	; 0
- 154:	fa cf       	rjmp	.-12     	; 0x14a <main+0x22>
- 156:	0b c0       	rjmp	.+22     	; 0x16e <main+0x46>
+ 15a:	00 99       	sbic	0x00, 0	; 0
+ 15c:	fa cf       	rjmp	.-12     	; 0x152 <main+0x2a>
 
 				break;
 			}
 			case Full_Step:
 			{
 				Stepper_Position('F',n); //Full rotation
- 158:	61 e0       	ldi	r22, 0x01	; 1
- 15a:	70 e0       	ldi	r23, 0x00	; 0
- 15c:	86 e4       	ldi	r24, 0x46	; 70
- 15e:	0a d0       	rcall	.+20     	; 0x174 <Stepper_Position>
+ 15e:	0f c0       	rjmp	.+30     	; 0x17e <main+0x56>
+ 160:	61 e0       	ldi	r22, 0x01	; 1
+ 162:	70 e0       	ldi	r23, 0x00	; 0
+ 164:	86 e4       	ldi	r24, 0x46	; 70
+
+				break;
+ 166:	0e d0       	rcall	.+28     	; 0x184 <Stepper_Position>
 			
 			case Position:
 			{
 				while ((PINC & 0x01))
 				{
 					Stepper_Position('W',n);
- 160:	06 c0       	rjmp	.+12     	; 0x16e <main+0x46>
- 162:	61 e0       	ldi	r22, 0x01	; 1
- 164:	70 e0       	ldi	r23, 0x00	; 0
- 166:	87 e5       	ldi	r24, 0x57	; 87
- 168:	05 d0       	rcall	.+10     	; 0x174 <Stepper_Position>
+ 168:	0a c0       	rjmp	.+20     	; 0x17e <main+0x56>
+ 16a:	61 e0       	ldi	r22, 0x01	; 1
+ 16c:	70 e0       	ldi	r23, 0x00	; 0
+ 16e:	87 e5       	ldi	r24, 0x57	; 87
 			}
 
 			
 			case Position:
 			{
 				while ((PINC & 0x01))
- 16a:	30 99       	sbic	0x06, 0	; 6
- 16c:	fa cf       	rjmp	.-12     	; 0x162 <main+0x3a>
+ 170:	09 d0       	rcall	.+18     	; 0x184 <Stepper_Position>
+ 172:	30 99       	sbic	0x06, 0	; 6
+				{
 					Stepper_Position('W',n);
 				}
+				Stepper_Position('F',h);
+ 174:	fa cf       	rjmp	.-12     	; 0x16a <main+0x42>
+ 176:	60 ed       	ldi	r22, 0xD0	; 208
+ 178:	70 e0       	ldi	r23, 0x00	; 0
+ 17a:	86 e4       	ldi	r24, 0x46	; 70
+ 17c:	03 d0       	rcall	.+6      	; 0x184 <Stepper_Position>
+				
+				break;
 
 			}
 		}
 		PORTK = 0x00; //clear output when done
- 16e:	10 92 08 01 	sts	0x0108, r1	; 0x800108 <__TEXT_REGION_LENGTH__+0x7c0108>
+ 17e:	10 92 08 01 	sts	0x0108, r1	; 0x800108 <__TEXT_REGION_LENGTH__+0x7c0108>
 		}
- 172:	e2 cf       	rjmp	.-60     	; 0x138 <main+0x10>
+ 182:	de cf       	rjmp	.-68     	; 0x140 <main+0x18>
 
-00000174 <Stepper_Position>:
+00000184 <Stepper_Position>:
 }
 void Stepper_Position(char mode, uint16_t degrees )
 {
 	uint16_t steps;
 	
 	switch (mode)
- 174:	86 34       	cpi	r24, 0x46	; 70
- 176:	51 f1       	breq	.+84     	; 0x1cc <Stepper_Position+0x58>
- 178:	87 35       	cpi	r24, 0x57	; 87
- 17a:	09 f0       	breq	.+2      	; 0x17e <Stepper_Position+0xa>
- 17c:	4d c0       	rjmp	.+154    	; 0x218 <Stepper_Position+0xa4>
+ 184:	86 34       	cpi	r24, 0x46	; 70
+ 186:	51 f1       	breq	.+84     	; 0x1dc <Stepper_Position+0x58>
+ 188:	87 35       	cpi	r24, 0x57	; 87
+ 18a:	09 f0       	breq	.+2      	; 0x18e <Stepper_Position+0xa>
+ 18c:	4d c0       	rjmp	.+154    	; 0x228 <Stepper_Position+0xa4>
 	{
 		case 'W':
 		{
 			
 			steps = degrees*6/4; //calculate number of steps for needed degrees
- 17e:	ab 01       	movw	r20, r22
- 180:	44 0f       	add	r20, r20
- 182:	55 1f       	adc	r21, r21
- 184:	46 0f       	add	r20, r22
- 186:	57 1f       	adc	r21, r23
- 188:	44 0f       	add	r20, r20
- 18a:	55 1f       	adc	r21, r21
- 18c:	56 95       	lsr	r21
- 18e:	47 95       	ror	r20
- 190:	56 95       	lsr	r21
- 192:	47 95       	ror	r20
+ 18e:	ab 01       	movw	r20, r22
+ 190:	44 0f       	add	r20, r20
+ 192:	55 1f       	adc	r21, r21
+ 194:	46 0f       	add	r20, r22
+ 196:	57 1f       	adc	r21, r23
+ 198:	44 0f       	add	r20, r20
+ 19a:	55 1f       	adc	r21, r21
+ 19c:	56 95       	lsr	r21
+ 19e:	47 95       	ror	r20
+ 1a0:	56 95       	lsr	r21
+ 1a2:	47 95       	ror	r20
 			
 			for(uint16_t i=0;i<steps;i++)
- 194:	60 e0       	ldi	r22, 0x00	; 0
- 196:	70 e0       	ldi	r23, 0x00	; 0
- 198:	15 c0       	rjmp	.+42     	; 0x1c4 <Stepper_Position+0x50>
+ 1a4:	60 e0       	ldi	r22, 0x00	; 0
+ 1a6:	70 e0       	ldi	r23, 0x00	; 0
+ 1a8:	15 c0       	rjmp	.+42     	; 0x1d4 <Stepper_Position+0x50>
 			{
 				for(uint16_t j=0; j<4; j++)
 				{
 					PORTK = Wave[j]; //runs step pattern
- 19a:	fc 01       	movw	r30, r24
- 19c:	ec 5f       	subi	r30, 0xFC	; 252
- 19e:	fd 4f       	sbci	r31, 0xFD	; 253
- 1a0:	20 81       	ld	r18, Z
- 1a2:	20 93 08 01 	sts	0x0108, r18	; 0x800108 <__TEXT_REGION_LENGTH__+0x7c0108>
+ 1aa:	fc 01       	movw	r30, r24
+ 1ac:	ec 5f       	subi	r30, 0xFC	; 252
+ 1ae:	fd 4f       	sbci	r31, 0xFD	; 253
+ 1b0:	20 81       	ld	r18, Z
+ 1b2:	20 93 08 01 	sts	0x0108, r18	; 0x800108 <__TEXT_REGION_LENGTH__+0x7c0108>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 1a6:	ef eb       	ldi	r30, 0xBF	; 191
- 1a8:	fd e5       	ldi	r31, 0x5D	; 93
- 1aa:	31 97       	sbiw	r30, 0x01	; 1
- 1ac:	f1 f7       	brne	.-4      	; 0x1aa <Stepper_Position+0x36>
- 1ae:	00 c0       	rjmp	.+0      	; 0x1b0 <Stepper_Position+0x3c>
- 1b0:	00 00       	nop
+ 1b6:	ef eb       	ldi	r30, 0xBF	; 191
+ 1b8:	fd e5       	ldi	r31, 0x5D	; 93
+ 1ba:	31 97       	sbiw	r30, 0x01	; 1
+ 1bc:	f1 f7       	brne	.-4      	; 0x1ba <Stepper_Position+0x36>
+ 1be:	00 c0       	rjmp	.+0      	; 0x1c0 <Stepper_Position+0x3c>
+ 1c0:	00 00       	nop
 			
 			steps = degrees*6/4; //calculate number of steps for needed degrees
 			
 			for(uint16_t i=0;i<steps;i++)
 			{
 				for(uint16_t j=0; j<4; j++)
- 1b2:	01 96       	adiw	r24, 0x01	; 1
- 1b4:	02 c0       	rjmp	.+4      	; 0x1ba <Stepper_Position+0x46>
- 1b6:	80 e0       	ldi	r24, 0x00	; 0
- 1b8:	90 e0       	ldi	r25, 0x00	; 0
- 1ba:	84 30       	cpi	r24, 0x04	; 4
- 1bc:	91 05       	cpc	r25, r1
- 1be:	68 f3       	brcs	.-38     	; 0x19a <Stepper_Position+0x26>
+ 1c2:	01 96       	adiw	r24, 0x01	; 1
+ 1c4:	02 c0       	rjmp	.+4      	; 0x1ca <Stepper_Position+0x46>
+ 1c6:	80 e0       	ldi	r24, 0x00	; 0
+ 1c8:	90 e0       	ldi	r25, 0x00	; 0
+ 1ca:	84 30       	cpi	r24, 0x04	; 4
+ 1cc:	91 05       	cpc	r25, r1
+ 1ce:	68 f3       	brcs	.-38     	; 0x1aa <Stepper_Position+0x26>
 		case 'W':
 		{
 			
 			steps = degrees*6/4; //calculate number of steps for needed degrees
 			
 			for(uint16_t i=0;i<steps;i++)
- 1c0:	6f 5f       	subi	r22, 0xFF	; 255
- 1c2:	7f 4f       	sbci	r23, 0xFF	; 255
- 1c4:	64 17       	cp	r22, r20
- 1c6:	75 07       	cpc	r23, r21
- 1c8:	b0 f3       	brcs	.-20     	; 0x1b6 <Stepper_Position+0x42>
- 1ca:	08 95       	ret
+ 1d0:	6f 5f       	subi	r22, 0xFF	; 255
+ 1d2:	7f 4f       	sbci	r23, 0xFF	; 255
+ 1d4:	64 17       	cp	r22, r20
+ 1d6:	75 07       	cpc	r23, r21
+ 1d8:	b0 f3       	brcs	.-20     	; 0x1c6 <Stepper_Position+0x42>
+ 1da:	08 95       	ret
 		}
 		
 		case 'F':
 		{
 			
 			steps = degrees*6/4; //calculate number of steps for needed degrees
- 1cc:	ab 01       	movw	r20, r22
- 1ce:	44 0f       	add	r20, r20
- 1d0:	55 1f       	adc	r21, r21
- 1d2:	46 0f       	add	r20, r22
- 1d4:	57 1f       	adc	r21, r23
- 1d6:	44 0f       	add	r20, r20
- 1d8:	55 1f       	adc	r21, r21
- 1da:	56 95       	lsr	r21
- 1dc:	47 95       	ror	r20
- 1de:	56 95       	lsr	r21
- 1e0:	47 95       	ror	r20
+ 1dc:	ab 01       	movw	r20, r22
+ 1de:	44 0f       	add	r20, r20
+ 1e0:	55 1f       	adc	r21, r21
+ 1e2:	46 0f       	add	r20, r22
+ 1e4:	57 1f       	adc	r21, r23
+ 1e6:	44 0f       	add	r20, r20
+ 1e8:	55 1f       	adc	r21, r21
+ 1ea:	56 95       	lsr	r21
+ 1ec:	47 95       	ror	r20
+ 1ee:	56 95       	lsr	r21
+ 1f0:	47 95       	ror	r20
 			
 			for(uint16_t i=0;i<steps;i++)
- 1e2:	60 e0       	ldi	r22, 0x00	; 0
- 1e4:	70 e0       	ldi	r23, 0x00	; 0
- 1e6:	15 c0       	rjmp	.+42     	; 0x212 <Stepper_Position+0x9e>
+ 1f2:	60 e0       	ldi	r22, 0x00	; 0
+ 1f4:	70 e0       	ldi	r23, 0x00	; 0
+ 1f6:	15 c0       	rjmp	.+42     	; 0x222 <Stepper_Position+0x9e>
 			{
 				for(uint16_t j=0; j<4; j++)
 				{
 					PORTK = Iwave[j]; //runs step pattern
- 1e8:	fc 01       	movw	r30, r24
- 1ea:	e0 50       	subi	r30, 0x00	; 0
- 1ec:	fe 4f       	sbci	r31, 0xFE	; 254
- 1ee:	20 81       	ld	r18, Z
- 1f0:	20 93 08 01 	sts	0x0108, r18	; 0x800108 <__TEXT_REGION_LENGTH__+0x7c0108>
- 1f4:	ef eb       	ldi	r30, 0xBF	; 191
- 1f6:	fd e5       	ldi	r31, 0x5D	; 93
- 1f8:	31 97       	sbiw	r30, 0x01	; 1
- 1fa:	f1 f7       	brne	.-4      	; 0x1f8 <Stepper_Position+0x84>
- 1fc:	00 c0       	rjmp	.+0      	; 0x1fe <Stepper_Position+0x8a>
- 1fe:	00 00       	nop
+ 1f8:	fc 01       	movw	r30, r24
+ 1fa:	e0 50       	subi	r30, 0x00	; 0
+ 1fc:	fe 4f       	sbci	r31, 0xFE	; 254
+ 1fe:	20 81       	ld	r18, Z
+ 200:	20 93 08 01 	sts	0x0108, r18	; 0x800108 <__TEXT_REGION_LENGTH__+0x7c0108>
+ 204:	ef eb       	ldi	r30, 0xBF	; 191
+ 206:	fd e5       	ldi	r31, 0x5D	; 93
+ 208:	31 97       	sbiw	r30, 0x01	; 1
+ 20a:	f1 f7       	brne	.-4      	; 0x208 <Stepper_Position+0x84>
+ 20c:	00 c0       	rjmp	.+0      	; 0x20e <Stepper_Position+0x8a>
+ 20e:	00 00       	nop
 			
 			steps = degrees*6/4; //calculate number of steps for needed degrees
 			
 			for(uint16_t i=0;i<steps;i++)
 			{
 				for(uint16_t j=0; j<4; j++)
- 200:	01 96       	adiw	r24, 0x01	; 1
- 202:	02 c0       	rjmp	.+4      	; 0x208 <Stepper_Position+0x94>
- 204:	80 e0       	ldi	r24, 0x00	; 0
- 206:	90 e0       	ldi	r25, 0x00	; 0
- 208:	84 30       	cpi	r24, 0x04	; 4
- 20a:	91 05       	cpc	r25, r1
- 20c:	68 f3       	brcs	.-38     	; 0x1e8 <Stepper_Position+0x74>
+ 210:	01 96       	adiw	r24, 0x01	; 1
+ 212:	02 c0       	rjmp	.+4      	; 0x218 <Stepper_Position+0x94>
+ 214:	80 e0       	ldi	r24, 0x00	; 0
+ 216:	90 e0       	ldi	r25, 0x00	; 0
+ 218:	84 30       	cpi	r24, 0x04	; 4
+ 21a:	91 05       	cpc	r25, r1
+ 21c:	68 f3       	brcs	.-38     	; 0x1f8 <Stepper_Position+0x74>
 		case 'F':
 		{
 			
 			steps = degrees*6/4; //calculate number of steps for needed degrees
 			
 			for(uint16_t i=0;i<steps;i++)
- 20e:	6f 5f       	subi	r22, 0xFF	; 255
- 210:	7f 4f       	sbci	r23, 0xFF	; 255
- 212:	64 17       	cp	r22, r20
- 214:	75 07       	cpc	r23, r21
- 216:	b0 f3       	brcs	.-20     	; 0x204 <Stepper_Position+0x90>
- 218:	08 95       	ret
+ 21e:	6f 5f       	subi	r22, 0xFF	; 255
+ 220:	7f 4f       	sbci	r23, 0xFF	; 255
+ 222:	64 17       	cp	r22, r20
+ 224:	75 07       	cpc	r23, r21
+ 226:	b0 f3       	brcs	.-20     	; 0x214 <Stepper_Position+0x90>
+ 228:	08 95       	ret
 
-0000021a <_exit>:
- 21a:	f8 94       	cli
+0000022a <_exit>:
+ 22a:	f8 94       	cli
 
-0000021c <__stop_program>:
- 21c:	ff cf       	rjmp	.-2      	; 0x21c <__stop_program>
+0000022c <__stop_program>:
+ 22c:	ff cf       	rjmp	.-2      	; 0x22c <__stop_program>

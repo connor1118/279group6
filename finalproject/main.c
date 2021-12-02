@@ -19,12 +19,15 @@ int main(void)
 	io_init();
 	
 	uint8_t n=1;
+	
+	uint8_t h=2000;
 
 	
 	while ((PINC & 0x01))
 	{
 		Stepper_Position('W',n);
 	}
+	Stepper_Position('F',h);
 	
     while (1) 
     {
@@ -58,6 +61,9 @@ int main(void)
 				{
 					Stepper_Position('W',n);
 				}
+				Stepper_Position('F',h);
+				
+				break;
 
 			}
 		}
