@@ -14,17 +14,26 @@
 #include <util/delay.h>
 #include "stepper_motor.h"
 #include "ADC.h"
+#include "USART0.h"
+#include "main.h"
 
 int main(void)
 {
 	io_init();
 	init_ADC();
-	
+	Init_UART();
+	sei();
 	uint8_t n=1;
+	uint8_t i = 0;
 	
-	uint8_t h=2000;
+	uint8_t h= 2000;
 	
 	uint16_t value = 0;
+	uint8_t locked = 1;
+	
+	char pass[20] = {"password"};
+		
+	char mode[40] = {"Configuration Enabled"};
 	
 	//TCCR3A = 0b00000010;
 	//TCCR3B = 0b00011000;
@@ -39,6 +48,17 @@ int main(void)
 
 	DDRB = 0x20;   //PWM Pins as Out
 	
+	while(locked == 1){
+		while(pass[i]){
+			if(rx_buffer[i] == pass[i])
+			{
+				i++;
+			}else{
+				UART_outstring("try a different code");
+			}
+		}
+		locked = 0;
+	}
 	while ((PINC & 0x01))
 	{
 		Stepper_Position('W',n);
