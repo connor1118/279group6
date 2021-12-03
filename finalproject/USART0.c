@@ -34,6 +34,7 @@ ISR(USART0_RX_vect){
 	{
 		rx_buffer[array_index] = '\0';  //end the line and reset index value to zero, and update boolean to 1
 		array_index = 0;
+		LCD_update = 1;
 	}else if(rx_char == 0x0A){  //does nothing if it is the next line
 		
 	}else{

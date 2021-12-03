@@ -10,6 +10,7 @@
 void UART_out(uint8_t ch);
 uint8_t UART_in(void);
 void Init_UART(void);
+void UART_outstring(char ch[]);
 
 #define Baud 9600
 #define myubr ((F_CPU / (Baud * 16UL)) - 1)  //define ubr based on formula

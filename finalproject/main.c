@@ -17,6 +17,8 @@
 #include "USART0.h"
 #include "main.h"
 
+void io_init(void);
+
 int main(void)
 {
 	io_init();
@@ -32,8 +34,6 @@ int main(void)
 	uint8_t locked = 1;
 	
 	char pass[20] = {"password"};
-		
-	char mode[40] = {"Configuration Enabled"};
 	
 	//TCCR3A = 0b00000010;
 	//TCCR3B = 0b00011000;
@@ -49,16 +49,21 @@ int main(void)
 	DDRB = 0x20;   //PWM Pins as Out
 	
 	while(locked == 1){
+		if(LCD_update == 1){
+			LCD_update = 0;
+		
 		while(pass[i]){
 			if(rx_buffer[i] == pass[i])
 			{
 				i++;
-			}else{
-				UART_outstring("try a different code");
 			}
+		if (!pass[i]){
+					locked = 0;
 		}
-		locked = 0;
+		}
+		}
 	}
+	UART_outstring("Configuration mode enabled");
 	while ((PINC & 0x01))
 	{
 		Stepper_Position('W',n);
