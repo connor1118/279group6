@@ -34,7 +34,6 @@ ISR(USART0_RX_vect){
 	{
 		rx_buffer[array_index] = '\0';  //end the line and reset index value to zero, and update boolean to 1
 		array_index = 0;
-		LCD_update = 1;
 	}else if(rx_char == 0x0A){  //does nothing if it is the next line
 		
 	}else{
@@ -42,4 +41,16 @@ ISR(USART0_RX_vect){
 		array_index++;
 		
 }
+	}
+	
+	
+	void UART_outstring(char ch[])
+	{
+		uint8_t i = 0;
+		while(ch[i])
+		{
+			UART_out(ch[i]);
+			i++;
+		}
+		UART_out(0x0D);
 	}

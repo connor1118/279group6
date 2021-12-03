@@ -131,10 +131,19 @@
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="main.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="stepper_motor.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="stepper_motor.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="USART0.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="USART0.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

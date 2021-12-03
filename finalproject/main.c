@@ -14,17 +14,26 @@
 #include <util/delay.h>
 #include "stepper_motor.h"
 #include "ADC.h"
+#include "USART0.h"
+#include "main.h"
 
 int main(void)
 {
 	io_init();
 	init_ADC();
-	
+	Init_UART();
+	sei();
 	uint8_t n=1;
+	uint8_t i = 0;
 	
-	uint8_t h=2000;
+	uint8_t h= 2000;
 	
 	uint16_t value = 0;
+	uint8_t locked = 1;
+	
+	char pass[20] = {"password"};
+		
+	char mode[40] = {"Configuration Enabled"};
 	
 	TCCR1A|=(1<<COM1A1)|(1<<COM1B1)|(1<<WGM11);        //NON Inverted PWM
 	TCCR1B|=(1<<WGM13)|(1<<WGM12)|(1<<CS11)|(1<<CS10); //PRESCALER=64 MODE 14(FAST PWM)
@@ -37,6 +46,17 @@ int main(void)
 	OCR1B = 250;
 	
 	
+	while(locked == 1){
+		while(pass[i]){
+			if(rx_buffer[i] == pass[i])
+			{
+				i++;
+			}else{
+				UART_outstring("try a different code");
+			}
+		}
+		locked = 0;
+	}
 	while ((PINC & 0x01))
 	{
 		Stepper_Position('W',n);
