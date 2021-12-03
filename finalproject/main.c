@@ -13,15 +13,31 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include "stepper_motor.h"
+#include "ADC.h"
 
 int main(void)
 {
 	io_init();
+	init_ADC();
 	
 	uint8_t n=1;
 	
 	uint8_t h=2000;
+	
+	uint16_t value = 0;
+	
+	//TCCR3A = 0b00000010;
+	//TCCR3B = 0b00011000;
+	//TCCR3A = TCCR3A | 0x80;  	// configure for clear on match
+	//TCCR3B = TCCR3B | 0x02;
+	//ICR3 = 39999; //use PWM mode 14
+	
+	TCCR1A|=(1<<COM1A1)|(1<<COM1B1)|(1<<WGM11);        //NON Inverted PWM
+	TCCR1B|=(1<<WGM13)|(1<<WGM12)|(1<<CS11)|(1<<CS10); //PRESCALER=64 MODE 14(FAST PWM)
 
+	ICR1=4999;  //fPWM=50Hz (Period = 20ms Standard).
+
+	DDRB = 0x20;   //PWM Pins as Out
 	
 	while ((PINC & 0x01))
 	{
@@ -32,10 +48,6 @@ int main(void)
     while (1) 
     {
 	
-	
-
-		
-
 		switch (PushButton)
 		{
 			case Wave_Step:
@@ -67,9 +79,20 @@ int main(void)
 
 			}
 		}
+		
 		PORTK = 0x00; //clear output when done
-		}
-			}
+		
+		//value = ten_bit_ADC(0); //read the channel from the Potentiometer
+		//value = ((value + 900)+(value *.173)); //convert the value read to the proper value
+		//OCR3A = value * 2; // set OCR3A to the value
+		
+		
+		OCR1A = ten_bit_ADC(0);
+		
+		
+		
+	}
+}
 
 void io_init(void)
 
@@ -81,5 +104,8 @@ void io_init(void)
 	PORTA = 0xFF; //turn on pull-up resistors
 	DDRC = 0x00;
 	PORTC = 0xFF;
+	
+	//DDRB = 0x90;
+	//DDRH = 0x40;
 
 }

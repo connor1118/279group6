@@ -7,10 +7,8 @@
 #ifndef ADC_H_
 #define ADC_H_
 
-#include <avr/interrupt.h>
-#include <avr/io.h>
 void init_ADC(void);
-volatile uint16_t adc_value;
+uint16_t ten_bit_ADC(uint8_t channel);
 
 
 #endif /* ADC_H_ */

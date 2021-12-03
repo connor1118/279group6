@@ -10,8 +10,7 @@ ADC.d ADC.o: .././ADC.c \
  e:\program\ files\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\version.h \
  e:\program\ files\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  e:\program\ files\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
- .././ADC.h \
- e:\program\ files\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h
+ .././ADC.h
 
 e:\program\ files\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -36,5 +35,3 @@ e:\program\ files\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h:
 e:\program\ files\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h:
 
 .././ADC.h:
-
-e:\program\ files\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h:

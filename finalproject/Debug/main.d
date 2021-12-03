@@ -13,7 +13,7 @@ main.d main.o: .././main.c \
  e:\program\ files\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
  e:\program\ files\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  e:\program\ files\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
- .././stepper_motor.h
+ .././stepper_motor.h .././ADC.h
 
 e:\program\ files\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -44,3 +44,5 @@ e:\program\ files\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_b
 e:\program\ files\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h:
 
 .././stepper_motor.h:
+
+.././ADC.h:
