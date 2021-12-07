@@ -212,7 +212,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x42e
+.text           0x00000000      0x69a
  *(.vectors)
  .vectors       0x00000000       0xe4 E:/Program Files/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega2560/avr6/crtatmega2560.o
                 0x00000000                __vector_default
@@ -337,28 +337,28 @@ END GROUP
                 0x00000132                ten_bit_ADC
  .text.io_init  0x00000168       0x18 main.o
                 0x00000168                io_init
- .text.main     0x00000180      0x150 main.o
+ .text.main     0x00000180      0x3bc main.o
                 0x00000180                main
  .text.Stepper_Position
-                0x000002d0       0xa6 stepper_motor.o
-                0x000002d0                Stepper_Position
+                0x0000053c       0xa6 stepper_motor.o
+                0x0000053c                Stepper_Position
  .text.UART_out
-                0x00000376        0xe USART0.o
-                0x00000376                UART_out
+                0x000005e2        0xe USART0.o
+                0x000005e2                UART_out
  .text.Init_UART
-                0x00000384       0x1c USART0.o
-                0x00000384                Init_UART
+                0x000005f0       0x1c USART0.o
+                0x000005f0                Init_UART
  .text.__vector_25
-                0x000003a0       0x62 USART0.o
-                0x000003a0                __vector_25
+                0x0000060c       0x62 USART0.o
+                0x0000060c                __vector_25
  .text.UART_outstring
-                0x00000402       0x28 USART0.o
-                0x00000402                UART_outstring
-                0x0000042a                . = ALIGN (0x2)
+                0x0000066e       0x28 USART0.o
+                0x0000066e                UART_outstring
+                0x00000696                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000042a        0x0 e:/program files/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
-                0x0000042a                _exit
-                0x0000042a                exit
+ .fini9         0x00000696        0x0 e:/program files/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
+                0x00000696                _exit
+                0x00000696                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -377,11 +377,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000042a        0x4 e:/program files/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
+ .fini0         0x00000696        0x4 e:/program files/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000042e                _etext = .
+                0x0000069a                _etext = .
 
-.data           0x00800200       0x38 load address 0x0000042e
+.data           0x00800200       0x38 load address 0x0000069a
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -412,8 +412,8 @@ END GROUP
                 0x00800252                LCD_update
                 0x00800253                rx_char
                 0x00800254                PROVIDE (__bss_end, .)
-                0x0000042e                __data_load_start = LOADADDR (.data)
-                0x00000466                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000069a                __data_load_start = LOADADDR (.data)
+                0x000006d2                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800254        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
@@ -501,29 +501,29 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1461
+.debug_info     0x00000000     0x187d
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0xbbc E:/Program Files/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega2560/avr6/crtatmega2560.o
  .debug_info    0x00000bbc       0xca ADC.o
- .debug_info    0x00000c86      0x303 main.o
- .debug_info    0x00000f89      0x33b stepper_motor.o
- .debug_info    0x000012c4      0x19d USART0.o
+ .debug_info    0x00000c86      0x71f main.o
+ .debug_info    0x000013a5      0x33b stepper_motor.o
+ .debug_info    0x000016e0      0x19d USART0.o
 
-.debug_abbrev   0x00000000      0xf09
+.debug_abbrev   0x00000000      0xf62
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0xb1a E:/Program Files/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega2560/avr6/crtatmega2560.o
  .debug_abbrev  0x00000b1a       0x89 ADC.o
- .debug_abbrev  0x00000ba3      0x135 main.o
- .debug_abbrev  0x00000cd8      0x11b stepper_motor.o
- .debug_abbrev  0x00000df3      0x116 USART0.o
+ .debug_abbrev  0x00000ba3      0x18e main.o
+ .debug_abbrev  0x00000d31      0x11b stepper_motor.o
+ .debug_abbrev  0x00000e4c      0x116 USART0.o
 
-.debug_line     0x00000000      0x86a
+.debug_line     0x00000000      0xb8f
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x1fa E:/Program Files/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega2560/avr6/crtatmega2560.o
  .debug_line    0x000001fa       0xd7 ADC.o
- .debug_line    0x000002d1      0x203 main.o
- .debug_line    0x000004d4      0x246 stepper_motor.o
- .debug_line    0x0000071a      0x150 USART0.o
+ .debug_line    0x000002d1      0x528 main.o
+ .debug_line    0x000007f9      0x246 stepper_motor.o
+ .debug_line    0x00000a3f      0x150 USART0.o
 
 .debug_frame    0x00000000      0x12c
  *(.debug_frame)
@@ -532,24 +532,24 @@ END GROUP
  .debug_frame   0x00000078       0x34 stepper_motor.o
  .debug_frame   0x000000ac       0x80 USART0.o
 
-.debug_str      0x00000000      0x6be
+.debug_str      0x00000000      0x6d2
  *(.debug_str)
  .debug_str     0x00000000      0x3e6 E:/Program Files/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega2560/avr6/crtatmega2560.o
  .debug_str     0x000003e6      0x163 ADC.o
                                 0x197 (size before relaxing)
- .debug_str     0x00000549       0xb5 main.o
-                                0x237 (size before relaxing)
- .debug_str     0x000005fe       0x9d stepper_motor.o
+ .debug_str     0x00000549      0x114 main.o
+                                0x296 (size before relaxing)
+ .debug_str     0x0000065d       0x52 stepper_motor.o
                                 0x224 (size before relaxing)
- .debug_str     0x0000069b       0x23 USART0.o
+ .debug_str     0x000006af       0x23 USART0.o
                                 0x1d2 (size before relaxing)
 
-.debug_loc      0x00000000      0x5df
+.debug_loc      0x00000000      0xbb3
  *(.debug_loc)
  .debug_loc     0x00000000       0x21 ADC.o
- .debug_loc     0x00000021      0x11b main.o
- .debug_loc     0x0000013c      0x392 stepper_motor.o
- .debug_loc     0x000004ce      0x111 USART0.o
+ .debug_loc     0x00000021      0x6ef main.o
+ .debug_loc     0x00000710      0x392 stepper_motor.o
+ .debug_loc     0x00000aa2      0x111 USART0.o
 
 .debug_macinfo
  *(.debug_macinfo)

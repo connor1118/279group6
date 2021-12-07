@@ -32,21 +32,26 @@ int main(void)
 	uint16_t value = 0;
 	uint16_t value_two = 0;
 	uint8_t locked = 1;
-	uint16_t arm_pos_one = 0;
-	uint16_t ef_pos_one = 0;
-	uint16_t base_pos_one = 0;
 	
+	uint16_t count = 10000;
+	
+	uint16_t num = 0;
+	
+	uint16_t arm_pos_one = 0;
+	uint16_t base_pos_one = 0;
+
+	uint16_t arm_pos_two = 0;
+	uint16_t base_pos_two = 0;
 	
 	char pass[20] = {"password"};
 	
 	TCCR1A|=(1<<COM1A1)|(1<<COM1B1)|(1<<WGM11);        //NON Inverted PWM
 	TCCR1B|=(1<<WGM13)|(1<<WGM12)|(1<<CS11)|(1<<CS10); //PRESCALER=64 MODE 14(FAST PWM)
 
-	ICR1=4999;  //fPWM=50Hz (Period = 20ms Standard).
+	ICR1=5000;  //fPWM=50Hz (Period = 20ms Standard).
 	
-	OCR1A = 0;
+	OCR1A = 250;
 	OCR1B = 250;
-	
 	
 	while(locked == 1){
 		if(LCD_update == 1){
@@ -81,6 +86,7 @@ int main(void)
 				while (PINA & Wave_Step)
 				{
 				Stepper_Position('W',n); //Wave rotation
+				count++;
 				}
 
 				break;
@@ -88,13 +94,14 @@ int main(void)
 			case Full_Step:
 			{
 				Stepper_Position('F',n); //Full rotation
-
+				count--;
 				break;
 			}
 
 			
 			case Position:
 			{
+				count = 1000;
 				while ((PINC & 0x01))
 				{
 					Stepper_Position('W',n);
@@ -114,14 +121,136 @@ int main(void)
 			value_two = ten_bit_ADC(1);
 			value_two = ((value_two*2)+97);
 			OCR1B = value_two;
+			
+			
 				
 		while (PINC & 0x02)
 		{
+			
 			if (PINA & 0x01)
 			{
-				
+				arm_pos_one = value_two;
+				base_pos_one = count;	
+			}
+			
+			if (PINA & 0x02)
+			{
+				arm_pos_two = value_two;
+				base_pos_two = count;
 			}
 		}
+		
+		
+		if (PINC & 0x08) //Enter Automatic mode
+		{
+			OCR1A = 475; //retract arm
+			if (value_two>arm_pos_one)
+			{
+				for (num = value_two; num>arm_pos_one; num--)
+				{
+					OCR1B = num;
+					_delay_ms(10);
+				}
+			}
+			if (value_two < arm_pos_one)
+			{
+				for (num = value_two; num<arm_pos_one; num++)
+				{
+					OCR1B = num;
+					_delay_ms(10);
+				}
+			}
+			value_two = num;
+			
+			
+			if (count>base_pos_one)
+			{
+				for (num = count; num > base_pos_one; num--)
+				{
+					Stepper_Position('F',n); //Wave rotation
+					count--;
+					_delay_ms(10);
+				}
+			}
+			if (value_two < base_pos_one)
+			{
+				for (num = count; num < base_pos_one; num++)
+				{
+					Stepper_Position('W',n); //Full rotation
+					count++;
+					_delay_ms(10);
+				}
+			}
+			OCR1A = 175; //extend arm
+			_delay_ms(500);
+			
+			for (num = arm_pos_one; num>250; num--)
+			{
+				OCR1B = num;
+				_delay_ms(10);
+			}
+			value_two = num;
+			
+			_delay_ms(100);
+			//move to next spot
+			
+			if (count>base_pos_two)
+			{
+				for (num = count; num > base_pos_two; num--)
+				{
+					Stepper_Position('F',n); //Wave rotation
+					count--;
+					_delay_ms(10);
+				}
+			}
+			if (value_two < base_pos_two)
+			{
+				for (num = count; num < base_pos_two; num++)
+				{
+					Stepper_Position('W',n); //Full rotation
+					count++;
+					_delay_ms(10);
+				}
+			}
+			
+			if (value_two>arm_pos_two)
+			{
+				for (num = value_two; num>arm_pos_two; num--)
+				{
+					OCR1B = num;
+					_delay_ms(10);
+				}
+			}
+			if (value_two < arm_pos_two)
+			{
+				for (num = value_two; num<arm_pos_two; num++)
+				{
+					OCR1B = num;
+					_delay_ms(10);
+				}
+			}
+			OCR1A = 475;
+			_delay_ms(500);
+			value_two = num;
+			for (num = arm_pos_one; num>250; num--)
+			{
+				OCR1B = num;
+				_delay_ms(10);
+			}
+			
+			while ((PINC & 0x01))
+			{
+				Stepper_Position('W',n);
+			}
+			Stepper_Position('F',h);
+			count = 10000;
+			
+			while(PINC & 0x08)
+			{
+			}
+			
+		}
+		
 			
 	}
 }
