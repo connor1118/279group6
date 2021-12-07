@@ -18,7 +18,7 @@ uint16_t ten_bit_ADC(uint8_t channel)
 {
 	uint16_t result; //store ADC value
 	
-	ADMUX = (ADMUX & 0xE0); // clear ADMUX and select channel
+	ADMUX = (ADMUX & 0xE0) | channel; // clear ADMUX and select channel
 	ADMUX |= (1<< REFS0); //set to VCC
 	ADCSRA |= (1<< ADSC); //begin conversion
 	

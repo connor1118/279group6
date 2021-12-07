@@ -31,6 +31,7 @@ int main(void)
 	uint8_t h= 2000;
 	
 	uint16_t value = 0;
+	uint16_t value_two = 0;
 	uint8_t locked = 1;
 	
 	char pass[20] = {"password"};
@@ -39,8 +40,6 @@ int main(void)
 	TCCR1B|=(1<<WGM13)|(1<<WGM12)|(1<<CS11)|(1<<CS10); //PRESCALER=64 MODE 14(FAST PWM)
 
 	ICR1=4999;  //fPWM=50Hz (Period = 20ms Standard).
-
-	
 	
 	OCR1A = 250;
 	OCR1B = 250;
@@ -62,6 +61,7 @@ int main(void)
 		}
 	}
 	UART_outstring("Configuration mode enabled");
+	
 	while ((PINC & 0x01))
 	{
 		Stepper_Position('W',n);
@@ -114,7 +114,7 @@ int main(void)
 		
 		while (PINC & 0x08)
 		{
-			value = ten_bit_ADC(0);
+			value = ten_bit_ADC(1);
 			value = ((value*.5)+97);
 			OCR1B = value;
 		}
