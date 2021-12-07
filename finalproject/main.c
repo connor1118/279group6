@@ -24,15 +24,18 @@ int main(void)
 	io_init();
 	init_ADC();
 	Init_UART();
-	sei();
 	uint8_t n=1;
 	uint8_t i = 0;
-	
+	sei();
 	uint8_t h= 2000;
 	
 	uint16_t value = 0;
 	uint16_t value_two = 0;
 	uint8_t locked = 1;
+	uint16_t arm_pos_one = 0;
+	uint16_t ef_pos_one = 0;
+	uint16_t base_pos_one = 0;
+	
 	
 	char pass[20] = {"password"};
 	
@@ -41,23 +44,23 @@ int main(void)
 
 	ICR1=4999;  //fPWM=50Hz (Period = 20ms Standard).
 	
-	OCR1A = 250;
+	OCR1A = 0;
 	OCR1B = 250;
 	
 	
 	while(locked == 1){
 		if(LCD_update == 1){
 			LCD_update = 0;
-		
-		while(pass[i]){
-			if(rx_buffer[i] == pass[i])
-			{
-				i++;
-			}
-		if (!pass[i]){
+			
+			while(pass[i]){
+				if(rx_buffer[i] == pass[i])
+				{
+					i++;
+				}
+				if (!pass[i]){
 					locked = 0;
-		}
-		}
+				}
+			}
 		}
 	}
 	UART_outstring("Configuration mode enabled");
@@ -105,23 +108,21 @@ int main(void)
 		
 		PORTK = 0x00; //clear output when done
 		
+			value = ten_bit_ADC(0);
+			value = ((value*2)+97);
+			OCR1A = value;
+			value_two = ten_bit_ADC(1);
+			value_two = ((value_two*2)+97);
+			OCR1B = value_two;
+				
 		while (PINC & 0x02)
 		{
-			value = ten_bit_ADC(0);
-			value = ((value*.5)+97);
-			OCR1A = value;
+			if (PINA & 0x01)
+			{
+				
+			}
 		}
-		
-		while (PINC & 0x08)
-		{
-			value = ten_bit_ADC(1);
-			value = ((value*.5)+97);
-			OCR1B = value;
-		}
-		
-		
-		
-		
+			
 	}
 }
 
